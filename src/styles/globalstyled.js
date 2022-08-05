@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+
  :root {
     --color-background: #FFFFFF;
     --color-primary: #64B447;
@@ -18,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     --color-warning: #FBEA85;
     --color-error: #EA524F;
     font-size: 60%;   
+    background-color: #121214;
   }
   @media (min-width: 700px) {
     :root {
@@ -30,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     outline:0;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
   }
   body,html{
     width: 100vw;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import seta from "../assets/img/seta.png"
 
 export const Conteiner = styled.div`
     width: 100vw;
@@ -11,22 +12,35 @@ export const Conteiner = styled.div`
     padding: 0 0;
     
     .conteiner-login{
-        width: 30%;
+        width: 26%;
         border-radius: 6px;
         background-color: #212529;
-        padding: 20px;
+        padding: 10px;
         margin-top: 40px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
+     
+    @media only screen and (max-width: 1024px) {
+        .conteiner-login{
+            width: 50%;
+        }
+    }
+
+    @media only screen and (max-width: 560px) {
+        .conteiner-login{
+            width: 90%;
+        }
+    }
+
 
     h3{
         color: #fff;
         font-size: 2rem;
         font-weight: 700;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
     }
 
     form{
@@ -43,23 +57,29 @@ export const Conteiner = styled.div`
 
         input{
             width: 100%;
-            height: 40px;
+            height: 30px;
             border: 1px solid #F8F9FA;
             border-radius: 6px;
             padding-left: 10px;
             background-color: #343B41;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
         }
 
         button{
             width: 100%;
+            font-size: 1.3rem;
+            font-weight: 700;
             border-radius: 6px;
-            height: 48px;
+            height: 30px;
             color: #fff;
             background-color: #FF577F;
             border: none;
             margin-bottom: 10px;
+        }
+
+        button:hover{
+            filter: opacity(0.6);
         }
     }
 
@@ -78,20 +98,52 @@ export const Conteiner = styled.div`
         }
 
        .register{
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #FF577F;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            text-align: center;
             text-decoration: none;
             margin-bottom: 10px;
             width: 100%;
             border-radius: 6px;
-            height: 48px;
-            color: #fff;
-            background-color: #FF577F;
+            height: 30px;
+            color: #F8F9FA;
+            background-color: #868E96;
             border: none;
             margin-bottom: 10px;
        }
+
+       .register:hover{
+            filter: opacity(0.6);
+       }
+
+       .h3-register{
+            margin-bottom: 5px;
+       }
+
+       .span-register{
+            margin-bottom: 15px;
+       }
+
+    
+
+       select {
+            width: 100%;
+            height: 30px;
+            border: 1px solid #F8F9FA;
+            font-size: 1.3rem;
+            border-radius: 6px;
+            padding-left: 5px;
+            background-color: #343B41;
+            color: white;
+            margin-bottom: 12px;
+            -webkit-appearance: none;
+            background-position: 95% center;
+            background-repeat: no-repeat;
+            background-image: url(${seta})
+        } 
     }
 
 

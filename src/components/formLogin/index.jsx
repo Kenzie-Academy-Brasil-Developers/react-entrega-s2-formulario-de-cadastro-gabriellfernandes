@@ -4,8 +4,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Api from "../../services/api";
 import { Link, useHistory } from "react-router-dom";
-import { Conteiner } from "./style";
-import logo from "../../assets/img/Logo.png"
+import { Conteiner } from "../../styles/FormStyle";
+import logo from "../../assets/img/Logo.png";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { motion } from "framer-motion"
+import { toastStyle } from "../../styles/styleToast";
 
 function LoginForm() {
   const history = useHistory();
@@ -23,27 +27,32 @@ function LoginForm() {
   const onSubmitFunction = (data) => {
     Api.post("/sessions", data)
       .then((res) => {
-        console.log(res.data);
+        toast.success('Logado Com sucesso', toastStyle);
         window.localStorage.clear();
         window.localStorage.setItem("token", res.data.token);
         window.localStorage.setItem("idUser", res.data.user.id);
-        history.push("/dashbord");
+        history.push("/dashboard");
       })
-      .catch((res) => console.log(res.response.data.message));
+      .catch((res) => res.response.data.message === "Incorrect email / password combination" && toast.error("Email ou Senha incorreto", toastStyle));
   };
 
   return (
     <Conteiner>
+      <motion.div
+        initial={{width: "40%"}}
+        animate={{width: "100%"}}
+        exit={{x: window.innerWidth, transition: {duration: 1}}}
+      >
         <img src={logo} alt="logo da kenziehub"/>
         <div className="conteiner-login">
             <h3>Login</h3>
             <form onSubmit={handleSubmit(onSubmitFunction)}>
                 <label htmlFor="email">Email</label>
                 <input type="text" {...register("email")} placeholder="Email" id="email"/>
-                {errors.email?.message}
+                <span>{errors.email?.message}</span>
                 <label htmlFor="password">Senha</label>
                 <input type="password" {...register("password")} placeholder="Senha" id="password"/>
-                {errors.password?.message}
+                <span>{errors.password?.message}</span>
                 <button type="submit">Entrar</button>
             </form>
             <div>
@@ -51,6 +60,7 @@ function LoginForm() {
                 <Link to={"register"} className="register">Registrar-se</Link>
             </div>
       </div>
+      </motion.div>
     </Conteiner>
   );
 }
