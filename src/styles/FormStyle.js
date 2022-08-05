@@ -49,7 +49,7 @@ export const Conteiner = styled.div`
         width: 80%;
 
         label{
-            font-size: 1rem;
+            font-size: 1.3rem;
             color: #F8F9FA;
             text-align: left;
             margin-bottom: 5px;
@@ -57,13 +57,14 @@ export const Conteiner = styled.div`
 
         input{
             width: 100%;
-            height: 30px;
+            height: 40px;
             border: 1px solid #F8F9FA;
             border-radius: 6px;
             padding-left: 10px;
             background-color: #343B41;
             color: white;
             margin-bottom: 5px;
+            font-family: 'Inter', sans-serif;
         }
 
         input::placeholder{
@@ -72,10 +73,10 @@ export const Conteiner = styled.div`
 
         button{
             width: 100%;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 700;
             border-radius: 6px;
-            height: 30px;
+            height: 40px;
             color: #fff;
             background-color: #FF577F;
             border: none;
@@ -106,13 +107,13 @@ export const Conteiner = styled.div`
             align-items: center;
             justify-content: center;
             color: #FF577F;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 700;
             text-decoration: none;
             margin-bottom: 10px;
             width: 100%;
             border-radius: 6px;
-            height: 30px;
+            height: 40px;
             color: #F8F9FA;
             background-color: #868E96;
             border: none;
@@ -135,9 +136,9 @@ export const Conteiner = styled.div`
 
        select {
             width: 100%;
-            height: 30px;
+            height: 40px;
             border: 1px solid #F8F9FA;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             border-radius: 6px;
             padding-left: 5px;
             background-color: #343B41;
