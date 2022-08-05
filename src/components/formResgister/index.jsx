@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Api from "../../services/api";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Conteiner } from "../../styles/FormStyle";
 import logo from "../../assets/img/Logo.png"
 import { toast } from "react-toastify";
@@ -13,7 +13,7 @@ import { toastStyle } from "../../styles/styleToast";
 
 
 function RegisterForm(){
-    const history = useHistory()
+    const navigate = useNavigate()
 
     const formSchema = yup.object().shape({
         email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
@@ -30,7 +30,7 @@ function RegisterForm(){
         Api.post("/users", data).then(res => 
         {
             toast.success("Conta criada com sucesso", toastStyle)
-            history.push("/login")
+            navigate("/login")
         }).catch(res => res.response.data.message === "Email already exists" && toast.error("Email já existe", toastStyle))
     }
    

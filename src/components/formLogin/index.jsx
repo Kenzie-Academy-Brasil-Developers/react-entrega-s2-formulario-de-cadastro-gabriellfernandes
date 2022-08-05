@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Api from "../../services/api";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Conteiner } from "../../styles/FormStyle";
 import logo from "../../assets/img/Logo.png";
 import { toast } from "react-toastify";
@@ -12,7 +12,7 @@ import { motion } from "framer-motion"
 import { toastStyle } from "../../styles/styleToast";
 
 function LoginForm() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const formSchema = yup.object().shape({
     email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
     password: yup.string().required("Senha obrigatório"),
@@ -31,7 +31,7 @@ function LoginForm() {
         window.localStorage.clear();
         window.localStorage.setItem("token", res.data.token);
         window.localStorage.setItem("idUser", res.data.user.id);
-        history.push("/dashboard");
+        navigate("/dashboard");
       })
       .catch((res) => res.response.data.message === "Incorrect email / password combination" && toast.error("Email ou Senha incorreto", toastStyle));
   };
@@ -57,7 +57,7 @@ function LoginForm() {
             </form>
             <div>
                 <span>Ainda não possui uma conta?</span>
-                <Link to={"register"} className="register">Registrar-se</Link>
+                <Link to={"/register"} className="register">Registrar-se</Link>
             </div>
       </div>
       </motion.div>

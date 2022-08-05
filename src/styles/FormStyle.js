@@ -66,6 +66,10 @@ export const Conteiner = styled.div`
             margin-bottom: 5px;
         }
 
+        input::placeholder{
+            font-family: 'Inter', sans-serif;
+        }
+
         button{
             width: 100%;
             font-size: 1.3rem;

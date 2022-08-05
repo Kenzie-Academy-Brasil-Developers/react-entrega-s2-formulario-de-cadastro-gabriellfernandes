@@ -1,4 +1,4 @@
-import { Link, Redirect } from "react-router-dom"
+import { Link, Navigate} from "react-router-dom"
 import logo from "../../assets/img/Logo.png"
 import CardName from "../../components/cardName"
 import { ConteinerHeader, ConteinerItens } from "./style"
@@ -16,7 +16,7 @@ function Dashboard(){
             animate={{opacity: 1}}
             exit={{opacity: 0, transition: {duration: 0.3}}}
         >
-            {token === null ? <Redirect to={"/login"}/> 
+            {token === null ? <Navigate to={"/login"}/> 
             :  
                 <>
                     <ConteinerHeader>
