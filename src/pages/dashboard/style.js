@@ -16,12 +16,12 @@ export const ConteinerHeader = styled.div`
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 1rem;
+            font-size: 1.4rem;
             font-weight: 700;
             text-decoration: none;
             width: 50px;
             border-radius: 6px;
-            height: 25px;
+            height: 30px;
             background-color: #212529;
             border: none;
         }
@@ -38,6 +38,10 @@ export const ConteinerHeader = styled.div`
     .animate__backInRight{
         animation: backInRight 0.5s;
         animation-duration: 1s;
+    }
+
+    img{
+            width: 7%;
     }
 `
 
@@ -76,5 +80,7 @@ export const ConteinerItens = styled.div`
             animation: backInRight 0.5s;
             animation-duration: 1s;
         }
+
+       
     }
 `
