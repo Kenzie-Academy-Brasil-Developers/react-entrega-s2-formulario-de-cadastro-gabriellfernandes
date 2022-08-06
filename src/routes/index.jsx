@@ -4,6 +4,7 @@ import Login from "../pages/login/login"
 import Register from "../pages/registro"
 import { AnimatePresence } from "framer-motion"
 import NewTechnology from "../components/newTechnology"
+import EditTechnology from "../components/editTechnology"
 
 function RoutesMap(){
     const token = window.localStorage.getItem("token")
@@ -14,7 +15,7 @@ function RoutesMap(){
                 <Route path={"/dashboard"} element={<Dashboard />}>
                     <Route path="tech">
                         <Route path="new" element={<NewTechnology />}></Route>
-                        <Route path="edit"></Route>
+                        <Route path="edit" element={<EditTechnology />}></Route>
                     </Route>
                 </Route>
                 <Route path={"/login"} element={<Login/>} />
