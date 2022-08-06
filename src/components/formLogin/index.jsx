@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,9 +10,12 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { motion } from "framer-motion"
 import { toastStyle } from "../../styles/styleToast";
+import { IoMdEye } from "react-icons/io";
+import { IoIosEyeOff } from "react-icons/io";
 
 function LoginForm() {
   const navigate = useNavigate();
+  const [visible, setVisible] = useState(false)
   const formSchema = yup.object().shape({
     email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
     password: yup.string().required("Senha obrigatório"),
@@ -51,8 +54,24 @@ function LoginForm() {
                 <input type="text" {...register("email")} placeholder="Email" id="email"/>
                 <span>{errors.email?.message}</span>
                 <label htmlFor="password">Senha</label>
-                <input type="password" {...register("password")} placeholder="Senha" id="password"/>
+                <div className="conteiner-password">
+                  {
+                    visible 
+                    ? 
+                      <>  
+                        <input type="text" {...register("password")} placeholder="Senha" id="password"/> 
+                        <IoMdEye className="password-icon" onClick={() => setVisible(false)}/>
+                      </>
+                    : 
+                    <>
+                      <input type="password" {...register("password")} placeholder="Senha" id="password"/>
+                      <IoIosEyeOff className="password-icon" onClick={() => setVisible(true)}/> 
+                    </>
+                  }
+                  
+                </div>
                 <span>{errors.password?.message}</span>
+
                 <button type="submit">Entrar</button>
             </form>
             <div>

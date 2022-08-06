@@ -149,6 +149,34 @@ export const Conteiner = styled.div`
             background-repeat: no-repeat;
             background-image: url(${seta})
         } 
+
+        .conteiner-password{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+
+            input{
+                border-right: none;
+                border-radius: 0px;
+                border-top-left-radius: 6px;
+                border-bottom-left-radius: 6px;
+            }
+
+            .password-icon{
+                border: 1px solid #F8F9FA;
+                border-left: none;
+                width: 8%;
+                height: 40px;
+                border-top-right-radius: 6px;
+                border-bottom-right-radius: 6px;
+                margin-bottom: 5px;
+                background-color: #343B41;
+                color: white;
+                padding-right: 8px;
+                cursor: pointer;
+            }
+
+        }
     }
 
 

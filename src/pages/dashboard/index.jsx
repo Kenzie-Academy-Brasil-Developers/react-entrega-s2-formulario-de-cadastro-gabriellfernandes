@@ -6,9 +6,9 @@ import { motion } from "framer-motion"
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { toastStyle } from "../../styles/styleToast"
+import Technology from "../../components/technology"
 function Dashboard(){
     const token = window.localStorage.getItem("token")
-
 
     return(
         <motion.div
@@ -28,6 +28,7 @@ function Dashboard(){
                     </ConteinerHeader>
                     <ConteinerItens>
                         <CardName />
+                        <Technology />
                     </ConteinerItens>
                 </>}
              
