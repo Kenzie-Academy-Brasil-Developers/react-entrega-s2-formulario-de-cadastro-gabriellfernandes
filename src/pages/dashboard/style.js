@@ -41,7 +41,7 @@ export const ConteinerHeader = styled.div`
     }
 
     img{
-            width: 7%;
+            width: 180px;
     }
 `
 
@@ -57,7 +57,7 @@ export const ConteinerItens = styled.div`
         height: 80px;
         align-items: center;
         justify-content: space-around;
-        padding: 0 0;
+        padding: 0px 0px;
         border-bottom: 0.5px solid #121214;
 
         h2{
@@ -82,5 +82,14 @@ export const ConteinerItens = styled.div`
         }
 
        
+    }
+
+    @media only screen and (max-width: 768px) {
+        .conteiner-user{
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+        }
     }
 `
