@@ -7,8 +7,28 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { toastStyle } from "../../styles/styleToast"
 import Technology from "../../components/technology"
+import { useEffect, useState } from "react"
+import Api from "../../services/api"
 function Dashboard(){
-    const token = window.localStorage.getItem("token")
+    const token = localStorage.getItem('token')
+    
+    const [isLoged, setIsLoged] = useState(false)
+    const [loading, setLoading] = useState(false)
+   
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+            if(token !== null){
+                Api.get("/profile",  {
+                    headers: {
+                      'Authorization': `Bearer ${window.localStorage.getItem("token")}` 
+                    },
+                }).then(res => {
+                    res.status === 200 || res.status === 201 ? setIsLoged(true) : setIsLoged(false)
+                }).catch(() => setIsLoged(false)).finally(() => setLoading(true))
+            }else{
+                setLoading(true)
+            }
+    }, [token])
 
     return(
         <motion.div
@@ -16,7 +36,8 @@ function Dashboard(){
             animate={{opacity: 1}}
             exit={{opacity: 0, transition: {duration: 0.3}}}
         >
-            {token === null ? <Navigate to={"/login"}/> 
+            {loading && 
+                !isLoged ? <Navigate to={"/login"}/> 
             :  
                 <>
                     <ConteinerHeader>
