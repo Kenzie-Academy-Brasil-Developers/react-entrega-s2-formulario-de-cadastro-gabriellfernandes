@@ -1,20 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Api from "../../services/api";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Conteiner } from "../../styles/FormStyle";
 import logo from "../../assets/img/Logo.png";
-import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { motion } from "framer-motion"
-import { toastStyle } from "../../styles/styleToast";
 import { IoMdEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
+import { AuthContext } from "../../contexts/authContext";
 
 function LoginForm() {
-  const navigate = useNavigate();
+  const { singIn } = useContext(AuthContext)
+
   const [visible, setVisible] = useState(false)
   const formSchema = yup.object().shape({
     email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
@@ -27,18 +26,7 @@ function LoginForm() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
-  const onSubmitFunction = (data) => {
-    Api.post("/sessions", data)
-      .then((res) => {
-        toast.success('Logado Com sucesso', toastStyle);
-        window.localStorage.clear();
-        window.localStorage.setItem("token", res.data.token);
-        window.localStorage.setItem("idUser", res.data.user.id);
-        navigate("/dashboard");
-      })
-      .catch((res) => res.response.data.message === "Incorrect email / password combination" && toast.error("Email ou Senha incorreto", toastStyle));
-  };
-
+  
   return (
     <Conteiner>
       <motion.div
@@ -49,7 +37,7 @@ function LoginForm() {
         <img src={logo} alt="logo da kenziehub"/>
         <div className="conteiner-login">
             <h3>Login</h3>
-            <form onSubmit={handleSubmit(onSubmitFunction)}>
+            <form onSubmit={handleSubmit(singIn)}>
                 <label htmlFor="email">Email</label>
                 <input type="text" {...register("email")} placeholder="Email" id="email"/>
                 <span>{errors.email?.message}</span>

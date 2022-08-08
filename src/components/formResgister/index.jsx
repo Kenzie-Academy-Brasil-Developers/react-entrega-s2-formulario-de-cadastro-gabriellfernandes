@@ -2,18 +2,17 @@ import React from "react"
 import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import Api from "../../services/api";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Conteiner } from "../../styles/FormStyle";
 import logo from "../../assets/img/Logo.png"
-import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import { motion } from "framer-motion"
-import { toastStyle } from "../../styles/styleToast";
+import { AuthContext } from "../../contexts/authContext";
+import { useContext } from "react"
 
 
 function RegisterForm(){
-    const navigate = useNavigate()
+   
+    const { registerIn } = useContext(AuthContext)
 
     const formSchema = yup.object().shape({
         email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
@@ -26,14 +25,7 @@ function RegisterForm(){
 
     const { register, handleSubmit, formState: { errors }} = useForm({resolver: yupResolver(formSchema)});
     
-    const onSubmitFunction = (data) => {
-        Api.post("/users", data).then(res => 
-        {
-            toast.success("Conta criada com sucesso", toastStyle)
-            navigate("/login")
-        }).catch(res => res.response.data.message === "Email already exists" && toast.error("Email já existe", toastStyle))
-    }
-   
+
     return(
        
             <Conteiner>
@@ -46,7 +38,7 @@ function RegisterForm(){
                     <div className="conteiner-login">
                         <h3 className="h3-register">Crie sua conta</h3>
                         <span className="span-register">Rapido e grátis, vamos nessa</span>
-                        <form onSubmit={handleSubmit(onSubmitFunction)}>
+                        <form onSubmit={handleSubmit(registerIn)}>
                             <label htmlFor="email">Email</label>
                             <input type="text" {...register("email")} placeholder="Email" id="email"/>
                             <span>{errors.email?.message}</span>

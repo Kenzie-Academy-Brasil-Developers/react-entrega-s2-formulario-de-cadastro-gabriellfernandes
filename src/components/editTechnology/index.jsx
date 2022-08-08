@@ -1,33 +1,18 @@
 import { useForm } from "react-hook-form";
-import Api from "../../services/api";
-import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
-import { toastStyle } from "../../styles/styleToast";
-import { useNavigate, useOutletContext } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { BsBackspaceFill } from "react-icons/bs";
 import { ModalConteiner } from "../../styles/modalStyle";
 import { motion } from "framer-motion"
-
+import { AuthContext } from "../../contexts/authContext";
+import { useContext } from "react";
 
 function EditTechnology(){
     const { register, handleSubmit} = useForm()
-    const token = window.localStorage.getItem("token")
     const navigate = useNavigate()
-    const [ idTech, setNewTech] = useOutletContext()
-    const onSubmitFunction = (tech) => {
-        Api.put(`/users/techs/${idTech}`, tech, {
-            headers: { Authorization: `Bearer ${token}` },
-        })
-          .then((res) => {
-            setNewTech((old) => [...old, res])
-            toast.success('Tecnologia alterada com sucesso', toastStyle);
-            navigate("/dashboard")
-          })
-          .catch((res) => console.log(res.message));
-      };
-
+    const { editTech, deletTech} = useContext(AuthContext)
+    
     return(
-        
             <ModalConteiner>
                 <div className="conteiner-modal"> 
                     <motion.div 
@@ -39,7 +24,7 @@ function EditTechnology(){
                             <h2>Editar Tecnologia</h2>
                             <BsBackspaceFill className="button-back" onClick={() => navigate("/dashboard")}/>
                         </div>
-                        <form onSubmit={handleSubmit(onSubmitFunction)}>
+                        <form onSubmit={handleSubmit(editTech)}>
                             <label htmlFor="status">Selecionar status</label>
                             <select name="" id="status" {...register('status')}>
                                 <option value="Iniciante">Iniciante</option>
@@ -47,20 +32,7 @@ function EditTechnology(){
                                 <option value="Avançado">Avançado</option>
                             </select>
                             <button type="submit">Edit Tecnologia</button>
-                            <button className="button-delete" type="button" onClick={() => {
-                                Api.delete(`/users/techs/${idTech}`,
-                                {
-                                    headers: {
-                                        'Authorization': `Bearer ${window.localStorage.getItem("token")}` 
-                                    },
-                                })
-                                .then(() => {
-                                    toast.success("Tecnlogias removida com sucesso", toastStyle)
-                                    setNewTech((oldItens) => [...oldItens, {title: "item removido", status: "removido"}])
-                                    navigate("/dashboard")
-                                })
-                                .catch(res => console.log(res))
-                            }}>Deletar</button>
+                            <button className="button-delete" type="button" onClick={() => deletTech()}>Deletar</button>
                         </form>
                     </motion.div>
                 </div>

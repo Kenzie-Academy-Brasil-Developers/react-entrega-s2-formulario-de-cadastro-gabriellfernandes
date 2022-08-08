@@ -1,15 +1,13 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Api from "../../services/api";
-import { toast } from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css';
-import { toastStyle } from "../../styles/styleToast";
-import { useNavigate, useOutletContext } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { useContext } from "react";
 import { BsBackspaceFill } from "react-icons/bs";
 import React from "react";
 import { ModalConteiner } from "../../styles/modalStyle";
 import { motion } from "framer-motion"
+import { AuthContext } from "../../contexts/authContext";
 
 function NewTechnology(){
     const formSchema = yup.object().shape({
@@ -19,22 +17,8 @@ function NewTechnology(){
     const { register,handleSubmit, formState: { errors },} = useForm({ resolver: yupResolver(formSchema) })
     const navigate = useNavigate()
    
-    const [ idTech , setNewTech ] = useOutletContext()
+    const { creatTech } = useContext(AuthContext)
    
-    const onSubmitFunction = (data) => {
-        Api.post("/users/techs", data,
-            {
-            headers: {
-              'Authorization': `Bearer ${window.localStorage.getItem("token")}` 
-            },
-        })
-          .then(() => {
-            toast.success('Tecnologia criada com sucesso', toastStyle);
-            setNewTech(oldItens => [...oldItens, data])
-            navigate("/dashboard")
-          })
-          .catch((res) => console.log(res));
-      };
     return(
         <ModalConteiner>
             <div className="conteiner-modal">
@@ -47,7 +31,7 @@ function NewTechnology(){
                         <h2>Cadastrar Tecnologia</h2>
                         <BsBackspaceFill className="button-back" onClick={() => navigate("/dashboard")}/>
                     </div>
-                    <form onSubmit={handleSubmit(onSubmitFunction)}>
+                    <form onSubmit={handleSubmit(creatTech)}>
                         <label htmlFor="nameTech">Nome</label>
                         <input type="text" id="nameTech" {...register('title')} placeholder="Nome da Tecnologia"/>
                         <span>{errors.title?.message}</span>

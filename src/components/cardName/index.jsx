@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
-import Api from "../../services/api";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/authContext";
 import "animate.css";
 
 function CardName() {
-  const id = window.localStorage.getItem("idUser");
-  const [user, SetUser] = useState({});
-  useEffect(() => {
-    Api.get(`/users/${id}`).then((res) => SetUser(res.data));
-  }, []);
+  const { user } = useContext(AuthContext)
   return (
     <div className="conteiner-user">
       <h2 className="animate__backInLeft">Olá, {user.name}</h2>

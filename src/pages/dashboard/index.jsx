@@ -11,7 +11,6 @@ import { useEffect, useState } from "react"
 import Api from "../../services/api"
 function Dashboard(){
     const token = localStorage.getItem('token')
-    
     const [isLoged, setIsLoged] = useState(false)
     const [loading, setLoading] = useState(false)
    
