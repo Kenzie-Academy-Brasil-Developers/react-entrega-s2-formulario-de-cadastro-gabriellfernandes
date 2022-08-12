@@ -32,16 +32,16 @@ const AuthProvider = ({ children }) => {
           toast.error("Email ou Senha incorreto", toastStyle)
       );
   };
-  
 
-  useEffect(() => { 
-    const idUser = window.localStorage.getItem("idUser")
-    Api.get(`/users/${idUser}`).then( res => {
+  useEffect(() => {
+    const idUser = window.localStorage.getItem("idUser");
+    Api.get(`/users/${idUser}`)
+      .then((res) => {
         SetUser(res.data);
-    }).catch(res => console.log(res))
-    .finally(() => setLoading(false));
-  }, [newTech])
-
+      })
+      .catch(() => console.clear())
+      .finally(() => setLoading(false));
+  }, [newTech]);
 
   const registerIn = (data) => {
     Api.post("/users", data)
@@ -57,16 +57,15 @@ const AuthProvider = ({ children }) => {
   };
 
   const creatTech = (data) => {
-    Api.post("/users/techs", data,
-        {
-        headers: {
-          'Authorization': `Bearer ${window.localStorage.getItem("token")}` 
-        },
+    Api.post("/users/techs", data, {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+      },
     })
       .then(() => {
-        toast.success('Tecnologia criada com sucesso', toastStyle);
-        setNewTech(oldItens => [...oldItens, data])
-        navigate("/dashboard")
+        toast.success("Tecnologia criada com sucesso", toastStyle);
+        setNewTech((oldItens) => [...oldItens, data]);
+        navigate("/dashboard");
       })
       .catch((res) => console.log(res));
   };
@@ -108,7 +107,6 @@ const AuthProvider = ({ children }) => {
       })
       .catch((res) => console.log(res));
   };
-
 
   return (
     <AuthContext.Provider

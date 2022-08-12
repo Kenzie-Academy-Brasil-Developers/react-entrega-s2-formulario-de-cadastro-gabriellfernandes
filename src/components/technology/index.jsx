@@ -7,7 +7,17 @@ import { motion } from "framer-motion";
 import { AuthContext } from "../../contexts/authContext";
 
 function Technology() {
-  const {user, setIdTech, deletTech, loading } = useContext(AuthContext);
+  const { user, setIdTech, deletTech, loading} = useContext(AuthContext);
+  const [ delet, setDelet] = useState(false);
+  
+  useEffect(() => {
+    delet && deletTech()
+    
+    return(
+      setDelet(false)
+    )
+  }, [delet])
+
   const navigate = useNavigate();
   return (
     <>
@@ -49,7 +59,11 @@ function Technology() {
                       </button>
                       <BsBackspaceFill
                         className="remove-tech"
-                        onClick={() => deletTech()}
+                        onClick={() => {
+                          setIdTech(elem.id) 
+                          setDelet(true)
+                        }}
+                        
                       />
                     </motion.li>
                   );
