@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { BsPlusSquareFill, BsBackspaceFill } from "react-icons/bs";
 import { useNavigate, Outlet } from "react-router-dom";
-import Api from "../../services/api";
 import { TechnologyWrapper } from "./style";
 import { motion } from "framer-motion";
 import { AuthContext } from "../../contexts/authContext";
@@ -34,7 +33,7 @@ function Technology() {
         </div>
         <div className="conteiner-tech animate__backInUp">
           {!loading ? (
-            user.techs.length ? (
+            user ? (
               <ul>
                 {user.techs.map((elem) => {
                   return (

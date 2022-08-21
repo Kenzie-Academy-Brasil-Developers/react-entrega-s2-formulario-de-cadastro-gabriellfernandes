@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import { Conteiner } from "../../styles/FormStyle";
-import logo from "../../assets/img/Logo.png";
 import 'react-toastify/dist/ReactToastify.css';
 import { motion } from "framer-motion"
 import { IoMdEye } from "react-icons/io";
@@ -34,13 +33,13 @@ function Login() {
         animate={{width: "100%"}}
         exit={{x: window.innerWidth, transition: {duration: 1}}}
       >
-        <img src={logo} alt="logo da kenziehub"/>
+        <img src={"../../assets/img/Logo.png"} alt="logo da kenziehub"/>
         <div className="conteiner-login">
             <h3>Login</h3>
             <form onSubmit={handleSubmit(singIn)}>
                 <label htmlFor="email">Email</label>
                 <input type="text" {...register("email")} placeholder="Email" id="email"/>
-                <span>{errors.email?.message}</span>
+                <span><>{errors.email?.message}</></span>
                 <label htmlFor="password">Senha</label>
                 <div className="conteiner-password">
                   {
@@ -58,7 +57,7 @@ function Login() {
                   }
                   
                 </div>
-                <span>{errors.password?.message}</span>
+                <span><>{errors.password?.message}</></span>
 
                 <button type="submit">Entrar</button>
             </form>

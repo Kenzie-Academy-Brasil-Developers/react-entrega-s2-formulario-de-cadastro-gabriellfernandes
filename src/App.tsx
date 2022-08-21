@@ -4,6 +4,9 @@ import GlobalStyle from "./styles/globalstyled"
 
 import { ToastContainer } from 'react-toastify';
 import AuthProvider from './contexts/authContext';
+
+
+
 function App() {
  
 

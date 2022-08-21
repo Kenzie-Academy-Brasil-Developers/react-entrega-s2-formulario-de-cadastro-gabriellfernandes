@@ -46,9 +46,9 @@ function NewTechnology() {
               {...register("title")}
               placeholder="Nome da Tecnologia"
             />
-            <span>{errors.title?.message}</span>
+            <span><>{errors.title?.message}</></span>
             <label htmlFor="status">Selecionar status</label>
-            <select name="" id="status" {...register("status")}>
+            <select id="status" {...register("status")}>
               <option value="Iniciante">Iniciante</option>
               <option value="Intermediário">Intermediário</option>
               <option value="Avançado">Avançado</option>

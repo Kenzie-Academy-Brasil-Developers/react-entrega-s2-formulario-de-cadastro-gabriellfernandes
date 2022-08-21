@@ -1,5 +1,4 @@
 import { Link, Navigate } from "react-router-dom";
-import logo from "../../assets/img/Logo.png";
 import CardName from "../../components/cardName";
 import { ConteinerHeader, ConteinerItens } from "./style";
 import { motion } from "framer-motion";
@@ -47,7 +46,7 @@ function Dashboard() {
         <>
           <ConteinerHeader>
             <img
-              src={logo}
+              src={"../../assets/img/Logo.png"}
               alt="logo da kenziehub"
               className="animate__backInLeft"
             />

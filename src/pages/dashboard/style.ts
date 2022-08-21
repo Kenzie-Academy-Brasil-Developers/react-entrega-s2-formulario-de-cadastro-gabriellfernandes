@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import 'animate.css';
 
 export const ConteinerHeader = styled.div`
