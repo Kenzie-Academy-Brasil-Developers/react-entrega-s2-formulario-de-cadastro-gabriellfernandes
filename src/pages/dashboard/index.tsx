@@ -8,6 +8,7 @@ import { toastStyle } from "../../styles/styleToast";
 import Technology from "../../components/technology";
 import { useEffect, useState } from "react";
 import Api from "../../services/api";
+import logo from "../../assets/img/Logo.png"
 
 function Dashboard() {
   const token = localStorage.getItem("token");
@@ -46,7 +47,7 @@ function Dashboard() {
         <>
           <ConteinerHeader>
             <img
-              src={"../../assets/img/Logo.png"}
+              src={logo}
               alt="logo da kenziehub"
               className="animate__backInLeft"
             />
