@@ -1,5 +1,6 @@
 import styled from "styled-components";
-//import seta from "../assets/img/seta.png"
+import seta from "../assets/img/seta.png"
+
 
 export const Conteiner = styled.div`
     width: 100vw;
@@ -147,7 +148,7 @@ export const Conteiner = styled.div`
             -webkit-appearance: none;
             background-position: 95% center;
             background-repeat: no-repeat;
-            background-image: url("../assets/img/seta.png")
+            background-image: url(${seta})
         } 
 
         .conteiner-password{

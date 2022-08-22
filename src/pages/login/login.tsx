@@ -9,6 +9,7 @@ import { motion } from "framer-motion"
 import { IoMdEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
 import { AuthContext } from "../../contexts/authContext";
+import logo from "../../assets/img/Logo.png"
 
 function Login() {
   const { singIn } = useContext(AuthContext)
@@ -33,7 +34,7 @@ function Login() {
         animate={{width: "100%"}}
         exit={{x: window.innerWidth, transition: {duration: 1}}}
       >
-        <img src={"../../assets/img/Logo.png"} alt="logo da kenziehub"/>
+        <img src={logo} alt="logo da kenziehub"/>
         <div className="conteiner-login">
             <h3>Login</h3>
             <form onSubmit={handleSubmit(singIn)}>

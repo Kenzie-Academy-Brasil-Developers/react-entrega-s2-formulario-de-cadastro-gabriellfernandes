@@ -7,6 +7,7 @@ import { Conteiner } from "../../styles/FormStyle";
 import { motion } from "framer-motion";
 import { AuthContext } from "../../contexts/authContext";
 import { useContext } from "react";
+import logo from "../../assets/img/Logo.png"
 
 function Register() {
   const { registerIn } = useContext(AuthContext);
@@ -47,7 +48,7 @@ function Register() {
         animate={{ width: "100%" }}
         exit={{ x: window.innerWidth, transition: { duration: 1 } }}
       >
-        <img src={"../../assets/img/Logo.png"} alt="logo da kenziehub" />
+        <img src={logo} alt="logo da kenziehub" />
         <div className="conteiner-login">
           <h3 className="h3-register">Crie sua conta</h3>
           <span className="span-register">Rapido e grátis, vamos nessa</span>
